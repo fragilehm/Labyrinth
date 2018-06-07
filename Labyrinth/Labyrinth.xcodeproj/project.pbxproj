@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2725ECBEEF1906D4C921681F /* Pods_Labyrinth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AC3312659979842F035EAD /* Pods_Labyrinth.framework */; };
 		8489738920C6605200F2EF67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489738820C6605200F2EF67 /* AppDelegate.swift */; };
 		8489738B20C6605200F2EF67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489738A20C6605200F2EF67 /* ViewController.swift */; };
 		8489738E20C6605200F2EF67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8489738C20C6605200F2EF67 /* Main.storyboard */; };
 		8489739020C6605300F2EF67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8489738F20C6605300F2EF67 /* Assets.xcassets */; };
 		8489739320C6605300F2EF67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8489739120C6605300F2EF67 /* LaunchScreen.storyboard */; };
+		8489739D20C7CC7900F2EF67 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489739C20C7CC7900F2EF67 /* MainSceneViewController.swift */; };
+		848973A020C7CCE400F2EF67 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489739F20C7CCE400F2EF67 /* Constants.swift */; };
+		848973A220C7DA1900F2EF67 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848973A120C7DA1900F2EF67 /* Extensions.swift */; };
+		848973A420C8307D00F2EF67 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848973A320C8307D00F2EF67 /* Room.swift */; };
+		848973A620C8317E00F2EF67 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848973A520C8317E00F2EF67 /* Thing.swift */; };
+		848973A820C8324800F2EF67 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848973A720C8324800F2EF67 /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0074D67510113B9276E58A /* Pods-Labyrinth.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Labyrinth.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Labyrinth/Pods-Labyrinth.debug.xcconfig"; sourceTree = "<group>"; };
+		14AC3312659979842F035EAD /* Pods_Labyrinth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Labyrinth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8489738520C6605200F2EF67 /* Labyrinth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labyrinth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8489738820C6605200F2EF67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8489738A20C6605200F2EF67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +31,13 @@
 		8489738F20C6605300F2EF67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8489739220C6605300F2EF67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8489739420C6605300F2EF67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8489739C20C7CC7900F2EF67 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
+		8489739F20C7CCE400F2EF67 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		848973A120C7DA1900F2EF67 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		848973A320C8307D00F2EF67 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		848973A520C8317E00F2EF67 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		848973A720C8324800F2EF67 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		84908DA446E76E56FF87037D /* Pods-Labyrinth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Labyrinth.release.xcconfig"; path = "Pods/Target Support Files/Pods-Labyrinth/Pods-Labyrinth.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +45,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2725ECBEEF1906D4C921681F /* Pods_Labyrinth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7301C0E2FF970F81DAA9EB56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A0074D67510113B9276E58A /* Pods-Labyrinth.debug.xcconfig */,
+				84908DA446E76E56FF87037D /* Pods-Labyrinth.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8489737C20C6605200F2EF67 = {
 			isa = PBXGroup;
 			children = (
 				8489738720C6605200F2EF67 /* Labyrinth */,
 				8489738620C6605200F2EF67 /* Products */,
+				7301C0E2FF970F81DAA9EB56 /* Pods */,
+				98AF5467DC0D39FB0673A94A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +82,52 @@
 		8489738720C6605200F2EF67 /* Labyrinth */ = {
 			isa = PBXGroup;
 			children = (
+				8489739E20C7CCD200F2EF67 /* HelperFiles */,
+				8489739B20C660CC00F2EF67 /* Controllers */,
+				8489739A20C660C300F2EF67 /* Models */,
 				8489738820C6605200F2EF67 /* AppDelegate.swift */,
-				8489738A20C6605200F2EF67 /* ViewController.swift */,
 				8489738C20C6605200F2EF67 /* Main.storyboard */,
 				8489738F20C6605300F2EF67 /* Assets.xcassets */,
 				8489739120C6605300F2EF67 /* LaunchScreen.storyboard */,
 				8489739420C6605300F2EF67 /* Info.plist */,
 			);
 			path = Labyrinth;
+			sourceTree = "<group>";
+		};
+		8489739A20C660C300F2EF67 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				848973A320C8307D00F2EF67 /* Room.swift */,
+				848973A520C8317E00F2EF67 /* Thing.swift */,
+				848973A720C8324800F2EF67 /* Player.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8489739B20C660CC00F2EF67 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8489738A20C6605200F2EF67 /* ViewController.swift */,
+				8489739C20C7CC7900F2EF67 /* MainSceneViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8489739E20C7CCD200F2EF67 /* HelperFiles */ = {
+			isa = PBXGroup;
+			children = (
+				8489739F20C7CCE400F2EF67 /* Constants.swift */,
+				848973A120C7DA1900F2EF67 /* Extensions.swift */,
+			);
+			path = HelperFiles;
+			sourceTree = "<group>";
+		};
+		98AF5467DC0D39FB0673A94A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				14AC3312659979842F035EAD /* Pods_Labyrinth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +137,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8489739720C6605300F2EF67 /* Build configuration list for PBXNativeTarget "Labyrinth" */;
 			buildPhases = (
+				84281D8AADD5949DA5059FAB /* [CP] Check Pods Manifest.lock */,
 				8489738120C6605200F2EF67 /* Sources */,
 				8489738220C6605200F2EF67 /* Frameworks */,
 				8489738320C6605200F2EF67 /* Resources */,
+				44383469A34E853EC928DEFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,13 +198,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		44383469A34E853EC928DEFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Labyrinth/Pods-Labyrinth-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Labyrinth/Pods-Labyrinth-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84281D8AADD5949DA5059FAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Labyrinth-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8489738120C6605200F2EF67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				848973A220C7DA1900F2EF67 /* Extensions.swift in Sources */,
 				8489738B20C6605200F2EF67 /* ViewController.swift in Sources */,
+				848973A420C8307D00F2EF67 /* Room.swift in Sources */,
 				8489738920C6605200F2EF67 /* AppDelegate.swift in Sources */,
+				848973A820C8324800F2EF67 /* Player.swift in Sources */,
+				8489739D20C7CC7900F2EF67 /* MainSceneViewController.swift in Sources */,
+				848973A020C7CCE400F2EF67 /* Constants.swift in Sources */,
+				848973A620C8317E00F2EF67 /* Thing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +391,7 @@
 		};
 		8489739820C6605300F2EF67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A0074D67510113B9276E58A /* Pods-Labyrinth.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,6 +410,7 @@
 		};
 		8489739920C6605300F2EF67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84908DA446E76E56FF87037D /* Pods-Labyrinth.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
