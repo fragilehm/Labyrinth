@@ -10,19 +10,17 @@ import Foundation
 import UIKit
 class Maze {
     var maze = [[Room]]()
-    var mazeSize = 3
-    
+    var mazeSize = 5
     init() {
         generateMaze()
     }
     private func generateMaze() {
-        self.mazeSize = 3
-        //Int(arc4random_uniform(20)) + 3
+        self.mazeSize = Int(arc4random_uniform(7)) + 5
         initializeRooms()
         createPathToExit()
         addAdditionalDoors()
         let numberOfThings = Int(arc4random_uniform(UInt32(self.mazeSize * self.mazeSize - 1)))
-        generateEnemies(count: 8)
+        generateEnemies(count: numberOfThings)
         generatePotions(count: numberOfThings)
         generateSwords(count: numberOfThings)
         generateCoins(count: numberOfThings)

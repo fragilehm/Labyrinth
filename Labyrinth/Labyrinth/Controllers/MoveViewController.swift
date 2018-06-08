@@ -16,10 +16,13 @@ class MoveViewController: UIViewController {
     @IBOutlet weak var eastButton: UIButton!
     @IBOutlet weak var southButton: UIButton!
     @IBOutlet weak var westButton: UIButton!
+    @IBOutlet weak var hintLabel: UILabel!
+
     var player = Player()
     var moveDelegate: MoveDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
+        hintLabel.text = "Hi \(player.name) in this maze you must find exit, but to find exit you should move. You have four choices to move, but some rooms are blocked. it means that only GREEN arrows are allowed."
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {

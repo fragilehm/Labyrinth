@@ -16,10 +16,7 @@ enum Direction: Int {
 
 class MainSceneViewController: UIViewController {
 
-    @IBOutlet weak var actionControllerHorizontalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var backpackcControllerHorizontalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var stuffControllerHorizontalConstraint: NSLayoutConstraint!
-    @IBOutlet weak var moveControllerHorizontalConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var hpLabel: UILabel!
     @IBOutlet weak var mainMessageTextView: UITextView!
     @IBOutlet weak var coinsLabel: UILabel!
@@ -31,97 +28,72 @@ class MainSceneViewController: UIViewController {
             hpSuperView.layer.cornerRadius = 5
         }
     }
+    @IBOutlet weak var mazePathHintHorizontalConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mazePathHintView: UIView!
+    @IBOutlet weak var mazePathView: MazePathView!
     @IBOutlet weak var hpView: UIView!
     @IBOutlet weak var hpViewTrailingConstraint: NSLayoutConstraint!
-    var player = Player()
-    var maze = Maze()
-    var row = 0
-    var col = 0
+    var name = ""
+    private var player = Player()
+    private var maze = Maze()
+    private var row = 0
+    private var col = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInitialValues()
-        
-        // Do any additional setup after loading the view.
     }
     private func setupInitialValues() {
         player.currentRoom = maze.maze[0][0]
+        player.name = self.name
         //let maze = Maze().maze
-        for i in 0..<3 {
-            for j in 0..<3 {
-                print("     ", maze.maze[i][j].north)
-                print(maze.maze[i][j].west, "     ", maze.maze[i][j].east)
-                print("     ", maze.maze[i][j].south)
-                print("enemy ", maze.maze[i][j].enemy)
-                print("potion ", maze.maze[i][j].potion)
-                print("sword ", maze.maze[i][j].sword)
-                print("coins ", maze.maze[i][j].coins)
-
-            }
-        }
+//        for i in 0..<3 {
+//            for j in 0..<3 {
+//                print("     ", maze.maze[i][j].north)
+//                print(maze.maze[i][j].west, "     ", maze.maze[i][j].east)
+//                print("     ", maze.maze[i][j].south)
+//                print("enemy ", maze.maze[i][j].enemy)
+//                print("potion ", maze.maze[i][j].potion)
+//                print("sword ", maze.maze[i][j].sword)
+//                print("coins ", maze.maze[i][j].coins)
+//
+//            }
+//        }
     }
     @IBAction func backpackDidTap(_ sender: Any) {
-        let backPackViewController = storyboard?.instantiateViewController(withIdentifier: "BackpackViewController") as! BackpackViewController
+        let backPackViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.BACKPACK_VIEW_CONTROLLER) as! BackpackViewController
         backPackViewController.player = self.player
         backPackViewController.backpackDelegate = self
         self.present(backPackViewController, animated: true, completion: nil)
-//        hideAll()
-//        showChildController(constraint: backpackcControllerHorizontalConstraint)
+
     }
     @IBAction func takeDidTap(_ sender: Any) {
-        let stuffViewController = storyboard?.instantiateViewController(withIdentifier: "StuffViewController") as! StuffViewController
+        let stuffViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.STUFF_VIEW_CONTROLLER) as! StuffViewController
         stuffViewController.player = self.player
         stuffViewController.stuffDelegate = self
         self.present(stuffViewController, animated: true, completion: nil)
-//        hideAll()
-//        showChildController(constraint: stuffControllerHorizontalConstraint)
+
     }
     @IBAction func moveDidTap(_ sender: Any) {
-        let moveViewController = storyboard?.instantiateViewController(withIdentifier: "MoveViewController") as! MoveViewController
+        let moveViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.MOVE_VIEW_CONTROLLER) as! MoveViewController
         moveViewController.player = self.player
         moveViewController.moveDelegate = self
         self.present(moveViewController, animated: true, completion: nil)
-//        hideAll()
-//        showChildController(constraint: moveControllerHorizontalConstraint)
+
     }
-    private func showChildController(constraint: NSLayoutConstraint) {
-        constraint.constant = 0
-        self.animateView(timeInterval: 0.5)
-    }
-    private func hideAll() {
-        self.actionControllerHorizontalConstraint.constant = 500
-        self.backpackcControllerHorizontalConstraint.constant = -500
-        self.stuffControllerHorizontalConstraint.constant = 500
-        self.moveControllerHorizontalConstraint.constant = -500
-        self.animateView(timeInterval: 0.5)
-    }
-    @IBAction func generateMaze(_ sender: Any) {
-        let maze = Maze().maze
-        for i in 0..<3 {
-            for j in 0..<3 {
-                print("     ", maze[i][j].north)
-                print(maze[i][j].west, "     ", maze[i][j].east)
-                print("     ", maze[i][j].south)
-                print("enemy ", maze[i][j].enemy)
-                print("potion ", maze[i][j].potion)
-                print("sword ", maze[i][j].sword)
-            }
-        }
+    @IBAction func hideMazeHintDidTap(_ sender: Any) {
+        mazePathHintHorizontalConstraint.constant = 500
+        animateView(timeInterval: 0.5)
     }
 }
 extension MainSceneViewController: BackpackDelegate {
     func updateHp() {
-        //player.health = 80
         hpLabel.text = "\(player.health)"
         let differenceWidth = CGFloat(100 - player.health)
         hpViewTrailingConstraint.constant = differenceWidth
         self.animateView(timeInterval: 0.3)
         print("updated hp")
     }
-//    private func animateView(timeInterval: TimeInterval) {
-//        UIView.animate(withDuration: timeInterval) {
-//            self.view.layoutIfNeeded()
-//        }
-//    }
+
 }
 extension MainSceneViewController: MoveDelegate {
     func move(direction: Direction) {
@@ -135,50 +107,50 @@ extension MainSceneViewController: MoveDelegate {
         case .south:
             if let currentRoom = player.currentRoom, currentRoom.isExit {
                 presentResultViewController(status: .winner)
-
-                print("You win")
+                //print("You win")
             } else {
                 row += 1
             }
         case .west:
             col -= 1
         }
-        checkForMonster(row: row, col: col)
+        checkForMonster(row: row, col: col, direction: direction)
         
     }
-    private func checkForMonster(row: Int, col: Int) {
+    private func checkForMonster(row: Int, col: Int, direction: Direction) {
         let room = maze.maze[row][col]
-        //showEnemyAlert(room: room)
         if room.enemy {
-            showEnemyAlert(room: room)
+            showEnemyAlert(room: room, direction: direction)
         } else {
+            mazePathView.drawLine(direction: direction)
+            player.pathDirections.append(direction)
             player.moveToRoomIfNotExit(room: room)
-            mainMessageTextView.text = "You are good to go, now you can move forward. But before that check HAND button, if you want to take additional stuff"
+            mainMessageTextView.text = Constants.Messages.GOOD_TO_GO
         }
     }
-    private func showEnemyAlert(room: Room) {
-        let alertController = UIAlertController(title: "Ups", message: "There a monster inside next room, you want to fight with him or choose another move if there is?", preferredStyle: .alert)
+    private func showEnemyAlert(room: Room, direction: Direction) {
+        let alertController = UIAlertController(title: "Ups", message: Constants.Messages.ENEMY_ALERT, preferredStyle: .alert)
         let fightAction = UIAlertAction(title: "Fight", style: .default) { (action) in
-            self.checkIfDead(room: room)
+            self.checkIfDead(room: room, direction: direction)
         }
         let chooseAnother = UIAlertAction(title: "Another", style: .cancel, handler : nil)
         alertController.addAction(fightAction)
         alertController.addAction(chooseAnother)
         self.present(alertController, animated: true, completion: nil)
     }
-    private func checkIfDead(room: Room) {
+    private func checkIfDead(room: Room, direction: Direction) {
         self.player.attackEnemy()
         if player.health == 0 {
-            
             presentResultViewController(status: .loser)
-            print("you lose")
             //you lose
         } else {
             updateHp()
             room.enemy = false
+            mazePathView.drawLine(direction: direction)
+            player.pathDirections.append(direction)
             player.moveToRoomIfNotExit(room: room)
             updateCoins(amount: 50)
-            mainMessageTextView.text = "This fucking monster is dead, now you can move forward. But before that check HAND button, if you want to take additional stuff. By the way check you health, you can use your backpack to heal yoursef"
+            mainMessageTextView.text = Constants.Messages.MONSTER_IS_DEAD
         }
     }
     private func updateCoins(amount: Int) {
@@ -186,7 +158,7 @@ extension MainSceneViewController: MoveDelegate {
         self.coinsLabel.text = "\(self.player.coins)"
     }
     private func presentResultViewController(status: ResultStatus) {
-        let resultViewController = storyboard?.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+        let resultViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.RESULT_VIEW_CONTROLLER) as! ResultViewController
         resultViewController.player = self.player
         resultViewController.resultStatus = status
         self.present(resultViewController, animated: true, completion: nil)

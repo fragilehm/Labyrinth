@@ -8,8 +8,8 @@
 
 import Foundation
 enum ThingName: Int {
-    case potion = 20
-    case sword  = 10
+    case potion = 10
+    case sword  = 20
 }
 struct Thing {
     var name: ThingName

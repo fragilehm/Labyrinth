@@ -9,21 +9,19 @@
 import Foundation
 
 class BackPack {
-    var capacity = 90
-    var sword: Bool = true
+    var capacity = 100
+    var sword: Bool = false
     var potions = [20, 20, 20]
-    func getThings() -> [String: Any] {
-        return ["sword": sword, "potions": potions]
-    }
+    
 }
 class Player {
     var health: Int = 100
     var backpack = BackPack()
     var currentRoom: Room?
+    var name = ""
     var coins: Int = 0
-    func getThings() -> [String: Any] {
-        return backpack.getThings()
-    }
+    var pathDirections = [Direction]()
+
     func useThingIfThereIsOne(thingName: ThingName) -> Bool {
         switch thingName {
         case .potion:
@@ -86,16 +84,12 @@ class Player {
     }
     func moveToRoomIfNotExit(room: Room) {
         self.currentRoom = room
-//        if room.isExit {
-//            return true
-//        }
-//        return false
     }
     func attackEnemy() {
         if self.backpack.sword {
-            self.health = max(health - 20, 0)
+            self.health = max(health - 10, 0)
         } else {
-            self.health = max(health - 50, 0)
+            self.health = max(health - 20, 0)
         }
     }
     

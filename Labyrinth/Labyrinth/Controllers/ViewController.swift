@@ -17,7 +17,9 @@ class ViewController: UIViewController {
     }
     @IBAction func startButtonTap(_ sender: Any) {
         if let name = nameTextField.text, !name.isEmpty {
-            self.navigationController?.show((storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.MainScene))!, sender: self)
+            let mainSceneViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.MAIN_SCENE) as! MainSceneViewController
+            mainSceneViewController.name = nameTextField.text!
+            self.navigationController?.present(mainSceneViewController, animated: false, completion: nil)
         } else {
             self.showAlertMessage(title: "Please", message: "Enter your name")
         }

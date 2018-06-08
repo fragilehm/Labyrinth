@@ -14,9 +14,10 @@ enum ResultStatus {
 class ResultViewController: UIViewController {
 
     @IBOutlet weak var resultStatusLabel: UILabel!
-    @IBOutlet weak var resultImageView: UIImageView!
     @IBOutlet weak var resultCoinsLabel: UILabel!
     @IBOutlet weak var resultMovesLabel: UILabel!
+    @IBOutlet weak var mazePathView: MazePathView!
+    @IBOutlet weak var resultMessageLabel: UILabel!
     var player: Player!
     var resultStatus: ResultStatus = .loser
     override func viewDidLoad() {
@@ -25,21 +26,28 @@ class ResultViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     private func setupResult() {
-        resultCoinsLabel.text = "You got \(player.coins)"
-        resultMovesLabel.text = "And \(38) moves"
+        resultCoinsLabel.text = "\(player.coins)"
+        resultMovesLabel.text = "\(player.pathDirections.count)"
         switch resultStatus {
         case .winner:
             self.resultStatusLabel.text = "YOU WIN!"
             self.resultStatusLabel.textColor = .green
-            self.resultImageView.image = UIImage(named: "winner")
+            resultMessageLabel.text = "Good job, \(player.name) you are true winner"
         case .loser:
             self.resultStatusLabel.text = "YOU LOSE!"
             self.resultStatusLabel.textColor = .red
-            self.resultImageView.image = UIImage(named: "loser")
+            resultMessageLabel.text = "I am really sorry for you, \(player.name), but you can try another game"
+        }
+        drawPath()
+    }
+    private func drawPath() {
+        for direction in player.pathDirections {
+            mazePathView.drawLine(direction: direction)
         }
     }
-    
     @IBAction func newGameDidTap(_ sender: Any) {
+        let mainViewController = UINavigationController(rootViewController: (storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.MAIN_VIEW_CONTROLLER))!)
+        self.present(mainViewController, animated: false, completion: nil)
     }
     
 }

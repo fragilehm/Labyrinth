@@ -24,9 +24,7 @@ class BackpackViewController: UIViewController {
     var player = Player()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("didload backpack")
-        //setupInitialValues()
-        // Do any additional setup after loading the view.
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         setupInitialValues()
@@ -52,13 +50,13 @@ class BackpackViewController: UIViewController {
         switch thingToUse {
         case .potion:
             if !player.useThingIfThereIsOne(thingName: .potion) {
-                showAlertMessage(title: "I am really sorry", message: "You dont have any potions to use")
+                showAlertMessage(title: "I am really sorry", message: Constants.Messages.NO_POTION_USE)
             } else {
                 updatePotionCount()
             }
         case .sword:
             if !player.useThingIfThereIsOne(thingName: .sword) {
-                showAlertMessage(title: "I am really sorry", message: "You dont have any sword to use")
+                showAlertMessage(title: "I am really sorry", message: Constants.Messages.NO_SWORD_USE)
             }
         }
     }
@@ -66,13 +64,13 @@ class BackpackViewController: UIViewController {
         switch thingToUse {
         case .potion:
             if  !player.dropThingIfNotEmpty(thingName: .potion) {
-                showAlertMessage(title: "Shit", message: "Your backpack doesn't has potions to drop")
+                showAlertMessage(title: "Shit", message: Constants.Messages.NO_POTION_DROP)
             } else {
                 updatePotionCount()
             }
         case .sword:
             if !player.dropThingIfNotEmpty(thingName: .sword) {
-                showAlertMessage(title: "Shit", message: "Your backpack doesn't has sword to drop")
+                showAlertMessage(title: "Shit", message: Constants.Messages.NO_SWORD_DROP)
             } else {
                 self.swordButton.isHidden = true
                 thingToUse = .potion

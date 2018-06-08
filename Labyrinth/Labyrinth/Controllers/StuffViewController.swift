@@ -34,12 +34,12 @@ class StuffViewController: UIViewController {
         if let player = player, let currentRoom = player.currentRoom {
             if currentRoom.potion {
                 if !player.takeThingIfEnoughSpace(thingName: .potion) {
-                    showAlertMessage(title: "Ups", message: "Your backpack is full, please check your backpack to drop unnecessary things")
+                    showAlertMessage(title: "Ups", message: Constants.Messages.FULL_BACKPACK)
                 }
                 setupInitialValues()
                 return
             }
-            showAlertMessage(title: "Ups", message: "There is now potion in this room")
+            showAlertMessage(title: "Ups", message: Constants.Messages.NO_POTION_ROOM)
             
         }
     }
@@ -47,12 +47,12 @@ class StuffViewController: UIViewController {
         if let player = player, let currentRoom = player.currentRoom {
             if currentRoom.sword {
                 if !player.takeThingIfEnoughSpace(thingName: .sword) {
-                    showAlertMessage(title: "Ups", message: "Your backpack is full, please check your backpack to drop unnecessary things")
+                    showAlertMessage(title: "Ups", message: Constants.Messages.FULL_BACKPACK)
                 }
                 setupInitialValues()
                 return
             }
-            showAlertMessage(title: "Ups", message: "There is now sword in this room")
+            showAlertMessage(title: "Ups", message: Constants.Messages.NO_SWORD_ROOM)
         }
     }
     @IBAction func coinsDidTap(_ sender: Any) {
@@ -65,7 +65,7 @@ class StuffViewController: UIViewController {
                 }
                 return
             }
-            showAlertMessage(title: "Ups", message: "There is now coins in this room")
+            showAlertMessage(title: "Ups", message: Constants.Messages.NO_COINS_ROOM)
         }
     }
     @IBAction func backDidTap(_ sender: Any) {
