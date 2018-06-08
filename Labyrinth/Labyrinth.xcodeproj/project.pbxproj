@@ -12,6 +12,7 @@
 		842A71F420CA3BA100246332 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A71F320CA3BA100246332 /* ActionViewController.swift */; };
 		842A71F620CA70F000246332 /* StuffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A71F520CA70F000246332 /* StuffViewController.swift */; };
 		842A71F820CA726200246332 /* MoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A71F720CA726200246332 /* MoveViewController.swift */; };
+		842A71FA20CAC05B00246332 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842A71F920CAC05B00246332 /* ResultViewController.swift */; };
 		845E93C620C93A81004B2DBB /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845E93C520C93A81004B2DBB /* Maze.swift */; };
 		8489738920C6605200F2EF67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489738820C6605200F2EF67 /* AppDelegate.swift */; };
 		8489738B20C6605200F2EF67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489738A20C6605200F2EF67 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		842A71F320CA3BA100246332 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		842A71F520CA70F000246332 /* StuffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StuffViewController.swift; sourceTree = "<group>"; };
 		842A71F720CA726200246332 /* MoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveViewController.swift; sourceTree = "<group>"; };
+		842A71F920CAC05B00246332 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		845E93C520C93A81004B2DBB /* Maze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maze.swift; sourceTree = "<group>"; };
 		8489738520C6605200F2EF67 /* Labyrinth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Labyrinth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8489738820C6605200F2EF67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				842A71F320CA3BA100246332 /* ActionViewController.swift */,
 				842A71F520CA70F000246332 /* StuffViewController.swift */,
 				842A71F720CA726200246332 /* MoveViewController.swift */,
+				842A71F920CAC05B00246332 /* ResultViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				848973A420C8307D00F2EF67 /* Room.swift in Sources */,
 				8489738920C6605200F2EF67 /* AppDelegate.swift in Sources */,
 				848973A820C8324800F2EF67 /* Player.swift in Sources */,
+				842A71FA20CAC05B00246332 /* ResultViewController.swift in Sources */,
 				842A71F220CA3B7900246332 /* BackpackViewController.swift in Sources */,
 				8489739D20C7CC7900F2EF67 /* MainSceneViewController.swift in Sources */,
 				848973A020C7CCE400F2EF67 /* Constants.swift in Sources */,

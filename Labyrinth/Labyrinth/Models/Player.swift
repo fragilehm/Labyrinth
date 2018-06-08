@@ -17,9 +17,10 @@ class BackPack {
     }
 }
 class Player {
-    var health: Int = 50
+    var health: Int = 100
     var backpack = BackPack()
     var currentRoom: Room?
+    var coins: Int = 0
     func getThings() -> [String: Any] {
         return backpack.getThings()
     }
@@ -45,8 +46,14 @@ class Player {
             self.backpack.capacity -= thingName.rawValue
             switch thingName {
             case .potion:
+                if let currentRoom = currentRoom {
+                    currentRoom.potion = false
+                }
                 self.backpack.potions.append(20)
             case .sword:
+                if let currentRoom = currentRoom {
+                    currentRoom.sword = false
+                }
                 self.backpack.sword = true
             }
             return true
@@ -71,12 +78,18 @@ class Player {
         return true
 
     }
-    func moveToRoomIfNotExit(room: Room) -> Bool {
-        self.currentRoom = room
-        if room.isExit {
-            return true
+    func addCoins(amount: Int) {
+        self.coins += amount
+        if let currentRoom = currentRoom {
+            currentRoom.coins = 0
         }
-        return false
+    }
+    func moveToRoomIfNotExit(room: Room) {
+        self.currentRoom = room
+//        if room.isExit {
+//            return true
+//        }
+//        return false
     }
     func attackEnemy() {
         if self.backpack.sword {

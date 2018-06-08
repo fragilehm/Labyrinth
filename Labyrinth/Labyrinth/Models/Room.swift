@@ -16,5 +16,5 @@ class Room {
     var sword: Bool = false
     var potion: Bool = false
     var isExit: Bool = false
-    var coin = 0
+    var coins = 0
 }

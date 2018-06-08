@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+protocol MoveDelegate: class {
+    func move(direction: Direction)
+}
 class MoveViewController: UIViewController {
 
     @IBOutlet weak var northButton: UIButton!
@@ -15,6 +17,7 @@ class MoveViewController: UIViewController {
     @IBOutlet weak var southButton: UIButton!
     @IBOutlet weak var westButton: UIButton!
     var player = Player()
+    var moveDelegate: MoveDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -32,16 +35,22 @@ class MoveViewController: UIViewController {
         }
     }
     @IBAction func northDidTap(_ sender: Any) {
-        
+        move(direction: .north)
     }
     @IBAction func eastDidTap(_ sender: Any) {
-        
+        move(direction: .east)
     }
     @IBAction func southDidTap(_ sender: Any) {
-        
+        move(direction: .south)
     }
     @IBAction func westDidTap(_ sender: Any) {
-        
+        move(direction: .west)
+    }
+    private func move(direction: Direction) {
+        self.dismiss(animated: true, completion: nil)
+        if let delegate = moveDelegate {
+            delegate.move(direction: direction)
+        }
     }
     private func setupArrowButtons(isAllowedToPass: Bool, button: UIButton, directionName: String) {
         if isAllowedToPass {
@@ -54,6 +63,9 @@ class MoveViewController: UIViewController {
     }
     private func setButtonImage(button: UIButton, imageName: String) {
         button.setImage(UIImage.init(named: imageName), for: .normal)
+    }
+    @IBAction func backDidTap(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
