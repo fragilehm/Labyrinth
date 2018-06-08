@@ -16,4 +16,9 @@ extension UIViewController {
         alertController.addAction(okAction)
         self.present(alertController, animated: false, completion: nil)
     }
+    func animateView(timeInterval: TimeInterval) {
+        UIView.animate(withDuration: timeInterval) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
