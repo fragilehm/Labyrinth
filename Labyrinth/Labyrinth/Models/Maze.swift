@@ -18,13 +18,11 @@ class Maze {
         return maze
     }
     private func generateMaze() {
-        self.mazeSize = 3
-            //Int(arc4random_uniform(7)) + 5
+        self.mazeSize = Int(arc4random_uniform(7)) + 5
         initializeRooms()
         createPathToExit()
         addAdditionalDoors()
-        let numberOfThings = 8
-            //Int(arc4random_uniform(UInt32(self.mazeSize * self.mazeSize - 1)))
+        let numberOfThings = Int(arc4random_uniform(UInt32(self.mazeSize * self.mazeSize - 1)))
         generateEnemies(count: numberOfThings)
         generatePotions(count: numberOfThings)
         generateSwords(count: numberOfThings)
