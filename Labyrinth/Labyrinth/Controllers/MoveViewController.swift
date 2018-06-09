@@ -22,7 +22,7 @@ class MoveViewController: UIViewController {
     var moveDelegate: MoveDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-        hintLabel.text = "Hi \(player.name) in this maze you must find exit, but to find exit you should move. You have four choices to move, but some rooms are blocked. it means that only GREEN arrows are allowed."
+        hintLabel.text = "Hi \(player.getName()) in this maze you must find exit, but to find exit you should move. You have four choices to move, but some rooms are blocked. it means that only GREEN arrows are allowed."
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -30,7 +30,7 @@ class MoveViewController: UIViewController {
         setupInitialValues()
     }
     private func setupInitialValues() {
-        if let currentRoom = player.currentRoom {
+        if let currentRoom = player.getCurrentRoom() {
             setupArrowButtons(isAllowedToPass: currentRoom.north, button: northButton, directionName: "north")
             setupArrowButtons(isAllowedToPass: currentRoom.east, button: eastButton, directionName: "east")
             setupArrowButtons(isAllowedToPass: currentRoom.south, button: southButton, directionName: "south")
@@ -50,10 +50,12 @@ class MoveViewController: UIViewController {
         move(direction: .west)
     }
     private func move(direction: Direction) {
-        self.dismiss(animated: true, completion: nil)
-        if let delegate = moveDelegate {
-            delegate.move(direction: direction)
-        }
+        self.dismiss(animated: true, completion: {
+            if let delegate = self.moveDelegate {
+                delegate.move(direction: direction)
+            }
+        })
+        
     }
     private func setupArrowButtons(isAllowedToPass: Bool, button: UIButton, directionName: String) {
         if isAllowedToPass {

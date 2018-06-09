@@ -43,8 +43,8 @@ class MainSceneViewController: UIViewController {
         setupInitialValues()
     }
     private func setupInitialValues() {
-        player.currentRoom = maze.maze[0][0]
-        player.name = self.name
+        player.setCurrentRoom(room: maze.getMaze()[0][0])
+        player.setName(name: name)
         //let maze = Maze().maze
 //        for i in 0..<3 {
 //            for j in 0..<3 {
@@ -87,8 +87,8 @@ class MainSceneViewController: UIViewController {
 }
 extension MainSceneViewController: BackpackDelegate {
     func updateHp() {
-        hpLabel.text = "\(player.health)"
-        let differenceWidth = CGFloat(100 - player.health)
+        hpLabel.text = "\(player.getHealth())"
+        let differenceWidth = CGFloat(100 - player.getHealth())
         hpViewTrailingConstraint.constant = differenceWidth
         self.animateView(timeInterval: 0.3)
         print("updated hp")
@@ -105,26 +105,25 @@ extension MainSceneViewController: MoveDelegate {
         case .east:
             col += 1
         case .south:
-            if let currentRoom = player.currentRoom, currentRoom.isExit {
+            if player.isCurrentRoomAnExit() {
                 presentResultViewController(status: .winner)
-                //print("You win")
             } else {
                 row += 1
             }
         case .west:
             col -= 1
         }
-        checkForMonster(row: row, col: col, direction: direction)
+        let room = maze.getMaze()[row][col]
+
+        checkForMonster(room: room, direction: direction)
         
     }
-    private func checkForMonster(row: Int, col: Int, direction: Direction) {
-        let room = maze.maze[row][col]
+    private func checkForMonster(room: Room, direction: Direction) {
         if room.enemy {
             showEnemyAlert(room: room, direction: direction)
         } else {
             mazePathView.drawLine(direction: direction)
-            player.pathDirections.append(direction)
-            player.moveToRoomIfNotExit(room: room)
+            player.moveToRoomIfNotExit(room: room, direction: direction)
             mainMessageTextView.text = Constants.Messages.GOOD_TO_GO
         }
     }
@@ -133,29 +132,42 @@ extension MainSceneViewController: MoveDelegate {
         let fightAction = UIAlertAction(title: "Fight", style: .default) { (action) in
             self.checkIfDead(room: room, direction: direction)
         }
-        let chooseAnother = UIAlertAction(title: "Another", style: .cancel, handler : nil)
+        let chooseAnother = UIAlertAction(title: "Another", style: .cancel, handler : { (action) in
+            self.resetIndexes(direction: direction)
+        })
         alertController.addAction(fightAction)
         alertController.addAction(chooseAnother)
         self.present(alertController, animated: true, completion: nil)
     }
+    private func resetIndexes(direction: Direction) {
+        switch direction {
+        case .north:
+            row += 1
+        case .east:
+            col -= 1
+        case .south:
+            row -= 1
+        case .west:
+            col += 1
+        }
+    }
     private func checkIfDead(room: Room, direction: Direction) {
         self.player.attackEnemy()
-        if player.health == 0 {
+        if player.getHealth() == 0 {
             presentResultViewController(status: .loser)
             //you lose
         } else {
             updateHp()
             room.enemy = false
             mazePathView.drawLine(direction: direction)
-            player.pathDirections.append(direction)
-            player.moveToRoomIfNotExit(room: room)
+            player.moveToRoomIfNotExit(room: room, direction: direction)
             updateCoins(amount: 50)
             mainMessageTextView.text = Constants.Messages.MONSTER_IS_DEAD
         }
     }
     private func updateCoins(amount: Int) {
         self.player.addCoins(amount: amount)
-        self.coinsLabel.text = "\(self.player.coins)"
+        self.coinsLabel.text = "\(self.player.getCoins())"
     }
     private func presentResultViewController(status: ResultStatus) {
         let resultViewController = storyboard?.instantiateViewController(withIdentifier: Constants.ControllerId.RESULT_VIEW_CONTROLLER) as! ResultViewController
@@ -166,7 +178,7 @@ extension MainSceneViewController: MoveDelegate {
 }
 extension MainSceneViewController: StuffDelegate {
     func updateCoins() {
-        self.coinsLabel.text = "\(player.coins)"
+        self.coinsLabel.text = "\(player.getCoins())"
     }
 }
 

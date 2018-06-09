@@ -9,17 +9,22 @@
 import Foundation
 import UIKit
 class Maze {
-    var maze = [[Room]]()
-    var mazeSize = 5
+    private var maze = [[Room]]()
+    private var mazeSize = 3
     init() {
         generateMaze()
     }
+    func getMaze() -> [[Room]] {
+        return maze
+    }
     private func generateMaze() {
-        self.mazeSize = Int(arc4random_uniform(7)) + 5
+        self.mazeSize = 3
+            //Int(arc4random_uniform(7)) + 5
         initializeRooms()
         createPathToExit()
         addAdditionalDoors()
-        let numberOfThings = Int(arc4random_uniform(UInt32(self.mazeSize * self.mazeSize - 1)))
+        let numberOfThings = 8
+            //Int(arc4random_uniform(UInt32(self.mazeSize * self.mazeSize - 1)))
         generateEnemies(count: numberOfThings)
         generatePotions(count: numberOfThings)
         generateSwords(count: numberOfThings)
@@ -27,10 +32,13 @@ class Maze {
     }
     private func initializeRooms() {
         //var maze = [[Room]]()
-        for _ in 0..<self.mazeSize {
+        for row in 0..<self.mazeSize {
             var mazeTemp = [Room]()
-            for _ in 0..<self.mazeSize {
-                mazeTemp.append(Room())
+            for col in 0..<self.mazeSize {
+                let room = Room()
+                room.row = row
+                room.col = col
+                mazeTemp.append(room)
             }
             maze.append(mazeTemp)
         }
@@ -113,7 +121,7 @@ class Maze {
         for roomNumber in uniqueRoomNumber {
             let col = roomNumber % mazeSize
             let row = (roomNumber - col) / mazeSize
-            maze[row][col].potion = true
+            maze[row][col].potion.append(20)
         }
     }
     private func generateSwords(count: Int) {

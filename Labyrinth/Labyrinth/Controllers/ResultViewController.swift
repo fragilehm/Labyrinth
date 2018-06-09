@@ -26,22 +26,23 @@ class ResultViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     private func setupResult() {
-        resultCoinsLabel.text = "\(player.coins)"
-        resultMovesLabel.text = "\(player.pathDirections.count)"
+        resultCoinsLabel.text = "\(player.getCoins())"
+        resultMovesLabel.text = "\(player.getPathDirections().count)"
         switch resultStatus {
         case .winner:
             self.resultStatusLabel.text = "YOU WIN!"
             self.resultStatusLabel.textColor = .green
-            resultMessageLabel.text = "Good job, \(player.name) you are true winner"
+            resultMessageLabel.text = "Good job, \(player.getName()) you are true winner"
         case .loser:
             self.resultStatusLabel.text = "YOU LOSE!"
             self.resultStatusLabel.textColor = .red
-            resultMessageLabel.text = "I am really sorry for you, \(player.name), but you can try another game"
+            resultMessageLabel.text = "I am really sorry for you, \(player.getName()), but you can try another game"
         }
         drawPath()
     }
     private func drawPath() {
-        for direction in player.pathDirections {
+        for direction in player.getPathDirections() {
+            print(direction)
             mazePathView.drawLine(direction: direction)
         }
     }

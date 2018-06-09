@@ -30,8 +30,8 @@ class BackpackViewController: UIViewController {
         setupInitialValues()
     }
     private func setupInitialValues() {
-        potionCountLabel.text = "\(player.backpack.potions.count)"
-        if player.backpack.sword {
+        potionCountLabel.text = "\(player.getBackpack().getPotions().count)"
+        if player.getBackpack().getSword() {
             swordButton.isHidden = false
         }
     }
@@ -74,9 +74,6 @@ class BackpackViewController: UIViewController {
             } else {
                 self.swordButton.isHidden = true
                 thingToUse = .potion
-                if let currentRoom = player.currentRoom {
-                    currentRoom.sword = true
-                }
                 updateActiveButton(constant: 24)
             }
         }
@@ -89,10 +86,7 @@ class BackpackViewController: UIViewController {
         self.animateView(timeInterval: 0.3)
     }
     private func updatePotionCount() {
-        self.potionCountLabel.text = "\(player.backpack.potions.count)"
-        if let currentRoom = player.currentRoom {
-            currentRoom.potion = true
-        }
+        self.potionCountLabel.text = "\(player.getBackpack().getPotions().count)"
         if let delegate = backpackDelegate {
             delegate.updateHp()
         }

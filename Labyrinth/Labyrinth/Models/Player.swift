@@ -9,19 +9,50 @@
 import Foundation
 
 class BackPack {
-    var capacity = 100
-    var sword: Bool = false
-    var potions = [20, 20, 20]
-    
+    fileprivate var capacity = 100
+    fileprivate var sword: Bool = false
+    fileprivate var potions = [20, 20, 20]
+    func getSword() -> Bool {
+        return sword
+    }
+    func getPotions() -> [Int] {
+        return potions
+    }
 }
 class Player {
-    var health: Int = 100
-    var backpack = BackPack()
-    var currentRoom: Room?
-    var name = ""
-    var coins: Int = 0
-    var pathDirections = [Direction]()
-
+    private var health: Int = 100
+    private var backpack = BackPack()
+    private var currentRoom: Room?
+    private var name = ""
+    private var coins: Int = 0
+    private var pathDirections = [Direction]()
+    func getCoins() -> Int {
+        return coins
+    }
+    func getPathDirections() -> [Direction] {
+        return pathDirections
+    }
+    func setCoins(coins: Int) {
+        self.coins = coins
+    }
+    func getHealth() -> Int {
+        return health
+    }
+    func getCurrentRoom() -> Room? {
+        return currentRoom
+    }
+    func setCurrentRoom(room: Room) {
+        self.currentRoom = room
+    }
+    func getBackpack() -> BackPack {
+        return backpack
+    }
+    func getName() -> String {
+        return name
+    }
+    func setName(name: String) {
+        self.name = name
+    }
     func useThingIfThereIsOne(thingName: ThingName) -> Bool {
         switch thingName {
         case .potion:
@@ -44,8 +75,8 @@ class Player {
             self.backpack.capacity -= thingName.rawValue
             switch thingName {
             case .potion:
-                if let currentRoom = currentRoom {
-                    currentRoom.potion = false
+                if let currentRoom = currentRoom, currentRoom.potion.count > 0 {
+                    currentRoom.potion.removeLast()
                 }
                 self.backpack.potions.append(20)
             case .sword:
@@ -67,11 +98,13 @@ class Player {
                 return false
             }
             self.backpack.potions.removeLast()
+            self.currentRoom?.potion.append(20)
         case .sword:
             if !self.backpack.sword {
                 return false
             }
             self.backpack.sword = false
+            self.currentRoom?.sword = true
         }
         return true
 
@@ -82,8 +115,10 @@ class Player {
             currentRoom.coins = 0
         }
     }
-    func moveToRoomIfNotExit(room: Room) {
+    func moveToRoomIfNotExit(room: Room, direction: Direction) {
         self.currentRoom = room
+        self.pathDirections.append(direction)
+        
     }
     func attackEnemy() {
         if self.backpack.sword {
@@ -91,6 +126,13 @@ class Player {
         } else {
             self.health = max(health - 20, 0)
         }
+    }
+    func isCurrentRoomAnExit() -> Bool {
+        if let currentRoom = currentRoom, currentRoom.isExit == true {
+            self.pathDirections.append(.south)
+            return true
+        }
+        return false
     }
     
     
